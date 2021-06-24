@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <include file="$(find points_preprocessor)/launch/points_concat_filter.launch">
+        <arg name="input_topics" value="[
+            /livox/lidar_1HDDGC500103141,
+            /livox/lidar_3WEDH5900101671,
+            /livox/lidar_3WEDH5900101871,
+            /livox/lidar_3WEDH5900102571,
+            /livox/lidar_3WEDH5900103041
+            ]"/>
+      <arg name="output_topic" value="/points"/>
+      <arg name="output_frame_id" value="livox_frame"/>
+    </include>
+  <!-- transformation between lidar and base_link -->
+  <node pkg="tf" type="static_transform_publisher" name="livox_lidar2base_publisher" args="0 0 0 0 0 0 base_link livox_frame 10" />
+</launch>
